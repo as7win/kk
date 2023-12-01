@@ -7,7 +7,7 @@ export default function TailWrapper({ children, showTail, isSent }: { children: 
             <div className="inline-block">
                 {showTail && !isSent ?
                     (
-                        <div className={`inline-block h-full ${isSent ? 'text-outgoing-background' : 'text-incoming-background'} float-left`}>
+                        <div className={`l ${isSent ? 'text-outgoing-background' : 'text-incoming-background'} float-left`}>
                             <TailIn />
                         </div>
                     ) :
@@ -15,12 +15,12 @@ export default function TailWrapper({ children, showTail, isSent }: { children: 
                         <div className='w-[8px] inline-block'></div>
                     )
                 }
-                <div className={`${isSent ? 'bg-outgoing-background' : 'bg-incoming-background'} inline-block rounded-b-lg  ${showTail ? isSent ? 'rounded-tl-lg' : 'rounded-tr-lg' : 'rounded-t-lg'} shadow-message`}>
+                <div className={`${isSent ? 'bg-outgoing-background' : 'bg-incoming-background'} rounded-b-lg  ${showTail ? isSent ? 'rounded-tl-lg' : 'rounded-tr-lg' : 'rounded-t-lg'} shadow-message`}>
                     {children}
                 </div>
                 {showTail && isSent ?
                     (
-                        <div className={`inline-block h-full ${isSent ? 'text-outgoing-background' : 'text-incoming-background'} float-right scale-x-[-1]`}>
+                        <div className={`l ${isSent ? 'text-outgoing-background' : 'text-incoming-background'} float-right scale-x-[-1]`}>
                             <TailIn />
                         </div>
                     ) :

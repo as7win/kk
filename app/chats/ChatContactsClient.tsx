@@ -9,6 +9,7 @@ import ContactUI from "./ContactUI";
 export default function ChatContactsClient({ contacts }: { contacts: Contact[] }) {
     const [supabase] = useState(() => createClient())
     const [contactsState, setContacts ] = useState<Contact[]>(contacts)
+    
     useEffect(() => {
         const channel = supabase
             .channel('any')
@@ -50,11 +51,14 @@ export default function ChatContactsClient({ contacts }: { contacts: Contact[] }
         return () => { supabase.removeChannel(channel) }
     })
     return (
-        <div className="flex flex-col">
-            {contactsState && contactsState.map(contact => {
-                return <ContactUI key={contact.wa_id} contact={contact} />
-            })}
-            {!contactsState && <div>No contacts to show</div>}
-        </div>
+        <div className="flex flex-wrap">
+        {contactsState.length ? (
+            contactsState.map((contact) => (
+                <ContactUI key={contact.wa_id} contact={contact} />
+            ))
+        ) : (
+            <div className="w-full text-center">No contacts to show</div>
+        )}
+    </div>
     )
 }
